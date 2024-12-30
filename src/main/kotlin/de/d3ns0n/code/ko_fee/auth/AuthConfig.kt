@@ -17,9 +17,7 @@ class AuthConfig {
             authorizeHttpRequests {
                 authorize(anyRequest, authenticated)
             }
-            oauth2ResourceServer {
-                jwt { }
-            }
+            oauth2ResourceServer { jwt { } }
         }
         return http.build()
     }

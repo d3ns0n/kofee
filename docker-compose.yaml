@@ -1,7 +1,7 @@
 services:
   keycloak:
     container_name: keycloak.openid-provider
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:26.0
     command:
       - start-dev
       - --import-realm
