@@ -16,7 +16,7 @@ class MeController {
         )
 
     data class UserInfoDto(
-        val userName: String,
+        val username: String,
         val authorities: List<String>,
         val tokenAttributes: Map<String, Any>,
     )
