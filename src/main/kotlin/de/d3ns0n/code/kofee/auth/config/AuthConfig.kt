@@ -1,4 +1,4 @@
-package de.d3ns0n.code.ko_fee.auth
+package de.d3ns0n.code.kofee.auth.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -10,7 +10,6 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class AuthConfig {
-
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http {
