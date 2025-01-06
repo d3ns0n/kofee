@@ -4,15 +4,18 @@ import org.springframework.security.oauth2.core.oidc.StandardClaimNames.PREFERRE
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Mono
 
 @RestController
 class MeController {
     @GetMapping("/me")
     fun me(auth: JwtAuthenticationToken) =
-        UserInfoDto(
-            auth.token.getClaimAsString(PREFERRED_USERNAME),
-            auth.authorities.map { it.authority },
-            auth.tokenAttributes,
+        Mono.just(
+            UserInfoDto(
+                auth.token.getClaimAsString(PREFERRED_USERNAME),
+                auth.authorities.map { it.authority },
+                auth.tokenAttributes,
+            ),
         )
 
     data class UserInfoDto(

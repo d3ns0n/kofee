@@ -1,18 +1,19 @@
 package de.d3ns0n.code.kofee.integration.clients
 
+import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Component
 
+private const val URI = "/me"
+
 @Lazy
 @Component
-class MeClient : AbstractClient() {
-    fun get(): ClientResponse {
-        var response =
+class MeClient(context: ApplicationContext) : AbstractClient(context) {
+    fun get(): ClientResponse =
+        ClientResponse(
             client
                 .get()
-                .uri { it.path("me").build() }
-                // .header(AUTHORIZATION, bearerToken)
-                .exchange()
-        return ClientResponse(response)
-    }
+                .uri(URI)
+                .exchange(),
+        )
 }

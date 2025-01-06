@@ -1,26 +1,27 @@
 package de.d3ns0n.code.kofee.integration.clients
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.web.server.LocalServerPort
-import org.springframework.context.annotation.Lazy
-import org.springframework.stereotype.Component
+import org.springframework.context.ApplicationContext
+import org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.mockJwt
+import org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.springSecurity
+import org.springframework.test.web.reactive.server.StatusAssertions
 import org.springframework.test.web.reactive.server.WebTestClient
-import java.time.Duration.ofSeconds
+import org.springframework.test.web.reactive.server.WebTestClient.BodyContentSpec
 
-@Lazy
-@Component
-abstract class AbstractClient {
-    @LocalServerPort
-    var port: Int = 0
-
-    protected val client: WebTestClient by lazy {
+abstract class AbstractClient(val context: ApplicationContext) {
+    protected var client =
         WebTestClient
-            .bindToServer()
-            .responseTimeout(ofSeconds(30))
-            .baseUrl("http://localhost:$port/")
+            .bindToApplicationContext(this.context)
+            .apply(springSecurity())
+            .configureClient()
             .build()
-    }
 
-    @Autowired lateinit var objectMapper: ObjectMapper
+    protected fun withJwt() {
+        client = client.mutateWith(mockJwt())
+    }
+}
+
+data class ClientResponse(val responseSpec: WebTestClient.ResponseSpec) {
+    fun body(): BodyContentSpec = lazy { responseSpec.expectBody() }.value
+
+    fun status(): StatusAssertions = responseSpec.expectStatus()
 }
