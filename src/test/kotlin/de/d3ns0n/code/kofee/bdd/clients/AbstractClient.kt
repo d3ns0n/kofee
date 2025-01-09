@@ -1,4 +1,4 @@
-package de.d3ns0n.code.kofee.integration.clients
+package de.d3ns0n.code.kofee.bdd.clients
 
 import org.springframework.context.ApplicationContext
 import org.springframework.security.oauth2.jwt.Jwt
@@ -23,6 +23,9 @@ data class ClientResponse(val responseSpec: WebTestClient.ResponseSpec) {
     fun status(): StatusAssertions = responseSpec.expectStatus()
 }
 
+/**
+ * If [jwt] is not null, then apply it to the [WebTestClient] and build a new instance
+ */
 fun WebTestClient.withJwt(jwt: Jwt?): WebTestClient {
     if (jwt == null) return this
 

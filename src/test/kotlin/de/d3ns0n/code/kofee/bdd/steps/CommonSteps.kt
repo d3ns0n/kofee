@@ -1,6 +1,6 @@
-package de.d3ns0n.code.kofee.integration.steps
+package de.d3ns0n.code.kofee.bdd.steps
 
-import de.d3ns0n.code.kofee.integration.ScenarioContext
+import de.d3ns0n.code.kofee.bdd.ScenarioContext
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import org.springframework.security.oauth2.core.oidc.StandardClaimNames.PREFERRED_USERNAME

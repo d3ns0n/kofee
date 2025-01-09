@@ -1,6 +1,6 @@
-package de.d3ns0n.code.kofee.integration.steps
+package de.d3ns0n.code.kofee.bdd.steps
 
-import de.d3ns0n.code.kofee.integration.ScenarioContext
+import de.d3ns0n.code.kofee.bdd.ScenarioContext
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.hamcrest.Matchers.hasItem

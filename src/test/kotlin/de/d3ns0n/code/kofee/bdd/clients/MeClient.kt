@@ -1,4 +1,4 @@
-package de.d3ns0n.code.kofee.integration.clients
+package de.d3ns0n.code.kofee.bdd.clients
 
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Lazy

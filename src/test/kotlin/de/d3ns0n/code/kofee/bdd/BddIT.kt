@@ -1,4 +1,4 @@
-package de.d3ns0n.code.kofee.integration
+package de.d3ns0n.code.kofee.bdd
 
 import io.cucumber.spring.CucumberContextConfiguration
 import org.junit.platform.suite.api.IncludeEngines
@@ -10,5 +10,5 @@ import org.springframework.boot.test.context.SpringBootTest
 @Suite
 @IncludeEngines("cucumber")
 @CucumberContextConfiguration
-@SelectClasspathResource("de/d3ns0n/code/kofee/integration")
-class KoFeeApplicationIT
+@SelectClasspathResource("de/d3ns0n/code/kofee/bdd")
+class BddIT

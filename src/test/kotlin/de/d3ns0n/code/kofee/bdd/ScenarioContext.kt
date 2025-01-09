@@ -1,7 +1,7 @@
-package de.d3ns0n.code.kofee.integration
+package de.d3ns0n.code.kofee.bdd
 
-import de.d3ns0n.code.kofee.integration.clients.ClientResponse
-import de.d3ns0n.code.kofee.integration.clients.MeClient
+import de.d3ns0n.code.kofee.bdd.clients.ClientResponse
+import de.d3ns0n.code.kofee.bdd.clients.MeClient
 import io.cucumber.spring.ScenarioScope
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.stereotype.Component
