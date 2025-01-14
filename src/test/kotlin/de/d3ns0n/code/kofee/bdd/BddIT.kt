@@ -10,5 +10,5 @@ import org.springframework.boot.test.context.SpringBootTest
 @Suite
 @IncludeEngines("cucumber")
 @CucumberContextConfiguration
-@SelectClasspathResource("de/d3ns0n/code/kofee/bdd")
+@SelectClasspathResource("de/d3ns0n/code/kofee")
 class BddIT
