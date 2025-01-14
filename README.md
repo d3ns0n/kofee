@@ -1,5 +1,7 @@
 # KoFee
 
+---
+
 ## How to develop
 
 ### Requirements
@@ -19,13 +21,26 @@ To format the code, you can run `spotless:apply`
 ./mvnw spotless:apply
 ```
 
+---
+
 ### Local environment
 
-To start the required external services you can use:
+1. To start the required external services you can use:
 
-```shell
-docker compose up -d
-```
+    ```shell
+    docker compose up -d
+    ```
+
+2. When all external services are up and running, you can start the application via:
+
+   ```shell
+    ./mvnw spring-boot:run
+    ```
+
+3. When the service is up and running you can use the HTTP example requests in the folder [http](http). The example requests are written for
+   the [IntelliJ HTTP Client](https://www.jetbrains.com/help/idea/exploring-http-syntax.html).
+
+---
 
 #### Keycloak
 
