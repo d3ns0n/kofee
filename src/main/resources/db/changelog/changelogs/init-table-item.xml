@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="init table item" author="dennis.lotz">
+		<createTable tableName="item">
+			<column name="id" type="UUID">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="name" type="VARCHAR" >
+				<constraints nullable="false" />
+			</column>
+			<column name="price" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="add sample data" author="dennis.lotz">
+		<insert tableName="item">
+			<column name="id" value="b4203716-4282-42cd-891f-dce418382ff5"/>
+			<column name="name" value="Ethiopian Sidamo"/>
+			<column name="price" value="33.50"/>
+		</insert>
+
+		<insert tableName="item">
+			<column name="id" value="228c7708-42eb-4180-b554-20011e206732"/>
+			<column name="name" value="Burundi"/>
+			<column name="price" value="29.99"/>
+		</insert>
+
+		<insert tableName="item">
+			<column name="id" value="e4369f36-0f6e-467c-b284-cf1e7d29e9df"/>
+			<column name="name" value="Jamaican Blue Mountain"/>
+			<column name="price" value="37.99"/>
+		</insert>
+
+		<insert tableName="item">
+			<column name="id" value="4cf116e7-b7f2-45b8-89a2-dfdac4faf078"/>
+			<column name="name" value="Decaf"/>
+			<column name="price" value="27.80"/>
+		</insert>
+
+		<insert tableName="item">
+			<column name="id" value="251da553-8220-4b5f-8779-56633f95f893"/>
+			<column name="name" value="Yirga Santos"/>
+			<column name="price" value="31.00"/>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

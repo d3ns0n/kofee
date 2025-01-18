@@ -1,0 +1,4 @@
+### What's in stock?
+GET http://localhost:8082/items
+Authorization: Bearer {{$auth.token("kofee_keycloak(Docker)")}}
+###

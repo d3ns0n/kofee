@@ -1,19 +1,20 @@
-package de.d3ns0n.code.kofee.infrastructure.adapter.incoming
+package de.d3ns0n.code.kofee.infrastructure.adapter.incoming.rest
 
-import org.springframework.security.oauth2.core.oidc.StandardClaimNames.PREFERRED_USERNAME
+import org.springframework.security.oauth2.core.oidc.StandardClaimNames
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
 
-// @PreAuthorize("hasRole('customer')")
 @RestController
+@RequestMapping("/me")
 class UserInfoController {
-    @GetMapping("/me")
+    @GetMapping
     fun me(auth: JwtAuthenticationToken) =
         Mono.just(
             UserInfoDto(
-                auth.token.getClaimAsString(PREFERRED_USERNAME),
+                auth.token.getClaimAsString(StandardClaimNames.PREFERRED_USERNAME),
                 auth.authorities.map { it.authority },
                 auth.tokenAttributes,
                 auth.token.tokenValue,

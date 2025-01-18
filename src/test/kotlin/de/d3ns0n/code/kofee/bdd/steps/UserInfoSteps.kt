@@ -2,7 +2,7 @@ package de.d3ns0n.code.kofee.bdd.steps
 
 import de.d3ns0n.code.kofee.bdd.ScenarioContext
 import de.d3ns0n.code.kofee.bdd.clients.transformTo
-import de.d3ns0n.code.kofee.infrastructure.adapter.incoming.UserInfoController.UserInfoDto
+import de.d3ns0n.code.kofee.infrastructure.adapter.incoming.rest.UserInfoController.UserInfoDto
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.assertj.core.api.Assertions.assertThat
