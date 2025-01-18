@@ -6,6 +6,6 @@ import org.springframework.test.context.ActiveProfiles
 
 @ActiveProfiles("test")
 @SpringBootTest
-class KoFeeApplicationTests {
+class KoFeeApplicationIT {
     @Test fun contextLoads() {}
 }

@@ -6,10 +6,10 @@ import de.d3ns0n.code.kofee.domain.Item
 import org.springframework.stereotype.Component
 
 @Component
-class ItemResponseMapper {
-    fun map(item: Item): ItemResponse = ItemResponse(item.id, item.name, item.price)
+class ItemDtoMapper {
+    fun mapToItemResponse(item: Item): ItemResponse = ItemResponse(item.id, item.name, item.price)
 
-    fun map(createItemRequest: CreateItemRequest): Item =
+    fun mapFromCreateItemRequest(createItemRequest: CreateItemRequest): Item =
         Item(
             name = createItemRequest.name,
             price = createItemRequest.price,

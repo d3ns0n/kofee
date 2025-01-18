@@ -1,4 +1,15 @@
+# visit CREDENTIALS.md for credentials
+
 ### What's in stock?
 GET http://localhost:8082/items
 Authorization: Bearer {{$auth.token("kofee_keycloak(Docker)")}}
-###
+
+### Create new item
+POST http://localhost:8082/items
+Authorization: Bearer {{$auth.token("kofee_keycloak(Docker)")}}
+Content-Type: application/json
+
+{
+  "name": "Latin Grande",
+  "price": 15.99
+}
