@@ -35,8 +35,10 @@ To format the code, you can run `spotless:apply`
    ```shell
    ./mvnw spring-boot:run
    ```
-3. When the service is up and running you can use the HTTP example requests in the folder [http](http). The example requests are written for
-   the [IntelliJ HTTP Client](https://www.jetbrains.com/help/idea/exploring-http-syntax.html).
+3. When the service is up and running you can use the HTTP example requests in the folder [http](http). Please use the `dev` environment. The example
+   requests are written for the [IntelliJ HTTP Client](https://www.jetbrains.com/help/idea/exploring-http-syntax.html). If you want to use another
+   client like Postman, check [./http/http-client.env.json](./http/http-client.env.json) for OAuth2 configuration parameters. Predefined credentials
+   and roles can be found in [CREDENTIALS.md](CREDENTIALS.md)
 
 ---
 
@@ -65,3 +67,16 @@ docker exec -it keycloak sh -c \
     --http-management-port 9999"
 ```
 
+---
+
+#### PostgreSQL
+
+An open-source relational database to store our items in. You can access it with your favourite DB tool via: `jdbc:postgresql://localhost:5433/kofee`
+
+---
+
+#### AKHQ
+
+Kafka GUI for Apache Kafka to manage topics, topics data, consumers group, schema registry, connect and more...
+
+Access via [http://localhost:8089/](http://localhost:8089/)
