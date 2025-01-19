@@ -5,7 +5,6 @@ import de.d3ns0n.code.kofee.application.port.incoming.items.GetItems
 import de.d3ns0n.code.kofee.application.port.incoming.items.dto.CreateItemRequest
 import de.d3ns0n.code.kofee.application.port.incoming.items.dto.ItemResponse
 import de.d3ns0n.code.kofee.application.service.ItemService
-import de.d3ns0n.code.kofee.infrastructure.configuration.Roles.Companion.COFFEE_FARMER
 import org.springframework.http.MediaType
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
@@ -28,7 +27,7 @@ class ItemController(
             .map { itemRequestResponseMapper.mapToItemResponse(it) }
     }
 
-    @PreAuthorize("hasRole($COFFEE_FARMER)")
+    @PreAuthorize("hasRole('coffee_farmer')")
     @PostMapping(
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE],

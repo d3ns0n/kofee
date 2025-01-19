@@ -16,25 +16,13 @@
     <description>A distributed coffee trading platform</description>
     <url/>
 
-    <licenses>
-        <license/>
-    </licenses>
-
-    <developers>
-        <developer/>
-    </developers>
-
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-
     <properties>
         <java.version>21</java.version>
         <kotlin.version>2.1.0</kotlin.version>
+
+        <avro-maven-plugin.version>1.12.0</avro-maven-plugin.version>
         <cucumber.version>7.20.1</cucumber.version>
+        <kafka-avro-serializer.version>7.8.0</kafka-avro-serializer.version>
         <maven-failsafe-plugin.version>3.5.2</maven-failsafe-plugin.version>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <testcontainers.version>1.20.4</testcontainers.version>
@@ -100,6 +88,16 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>${kafka-avro-serializer.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.diffplug.spotless</groupId>
             <artifactId>spotless-maven-plugin</artifactId>
             <version>${spotless-maven-plugin.version}</version>
@@ -160,6 +158,11 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
+            <artifactId>kafka</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
             <artifactId>r2dbc</artifactId>
             <scope>test</scope>
         </dependency>
@@ -168,7 +171,24 @@
             <artifactId>postgresql</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -243,6 +263,29 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>${avro-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceDirectory>src/main/resources/avro</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <!-- Convert Avro logicalType uuid into Java UUID instead of String -->
+                            <customConversions>org.apache.avro.Conversions$UUIDConversion</customConversions>
+                            <!-- Convert Avro logicalType decimal into Java BigDecimal instead of ByteBuffer -->
+                            <enableDecimalLogicalType>true</enableDecimalLogicalType>
+                            <!-- Convert Avro string into Java String instead of CharSequence -->
+                            <stringType>String</stringType>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>

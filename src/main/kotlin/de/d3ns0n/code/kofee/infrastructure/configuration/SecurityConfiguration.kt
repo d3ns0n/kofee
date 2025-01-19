@@ -52,9 +52,3 @@ class SecurityConfiguration {
                 )
             }
 }
-
-class Roles {
-    companion object {
-        const val COFFEE_FARMER = "coffee_farmer"
-    }
-}

@@ -1,0 +1,32 @@
+{
+  "name": "ItemEvent",
+  "namespace": "de.d3ns0n.code.kofee.item.v1",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "name",
+      "type": {
+        "type": "string",
+        "avro.java.string": "String"
+      }
+    },
+    {
+      "name": "price",
+      "type": "double"
+    },
+    {
+      "name": "publishedAt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}
