@@ -2,6 +2,7 @@ package de.d3ns0n.code.kofee.bdd
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import de.d3ns0n.code.kofee.bdd.clients.ClientResponse
+import de.d3ns0n.code.kofee.bdd.clients.ItemsClient
 import de.d3ns0n.code.kofee.bdd.clients.UserInfoClient
 import io.cucumber.spring.ScenarioScope
 import org.springframework.security.oauth2.jwt.Jwt
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 data class ScenarioContext(
     val userInfoClient: UserInfoClient,
+    val itemsClient: ItemsClient,
     val objectMapper: ObjectMapper,
 ) {
     var jwt: Jwt? = null

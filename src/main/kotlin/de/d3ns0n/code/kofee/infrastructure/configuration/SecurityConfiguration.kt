@@ -40,6 +40,8 @@ class SecurityConfiguration {
                         reactiveJwtAuthenticationConverter()
                 }
             }
+
+            csrf { disable() }
         }
 
     private fun reactiveJwtAuthenticationConverter() =

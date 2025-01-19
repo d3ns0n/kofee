@@ -1,3 +1,0 @@
-spring:
-  liquibase:
-    url: 'jdbc:tc:postgresql:17:///kofee'
