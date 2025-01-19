@@ -18,6 +18,15 @@ import reactor.core.publisher.Flux
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 class SecurityConfiguration {
+    companion object {
+        fun authoritiesFromJwtRealmRoles(jwt: Jwt): Collection<GrantedAuthority> =
+            jwt.claims["realm_access"]
+                ?.let { (it as? Map<*, *>)?.get("roles") }
+                ?.let { (it as? List<*>) }
+                ?.mapNotNull { (it as? String)?.let { SimpleGrantedAuthority("ROLE_$it") } }
+                ?: emptyList()
+    }
+
     @Bean
     fun filterChain(http: ServerHttpSecurity): SecurityWebFilterChain =
         http {
@@ -44,9 +53,8 @@ class SecurityConfiguration {
             }
 }
 
-fun authoritiesFromJwtRealmRoles(jwt: Jwt): Collection<GrantedAuthority> =
-    jwt.claims["realm_access"]
-        ?.let { (it as? Map<*, *>)?.get("roles") }
-        ?.let { (it as? List<*>) }
-        ?.mapNotNull { (it as? String)?.let { SimpleGrantedAuthority("ROLE_$it") } }
-        ?: emptyList()
+class Roles {
+    companion object {
+        const val COFFEE_FARMER = "coffee_farmer"
+    }
+}

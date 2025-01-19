@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.core.oidc.StandardClaimNames.PREFERRE
 import org.springframework.security.oauth2.jwt.Jwt
 
 data class CommonSteps(val scenarioContext: ScenarioContext) {
-    @Given("user is logged in as a customer")
+    @Given("logged in as a customer")
     fun customerJWT() {
         scenarioContext.jwt =
             Jwt.withTokenValue("token")
@@ -17,7 +17,7 @@ data class CommonSteps(val scenarioContext: ScenarioContext) {
                 .build()
     }
 
-    @Given("user is logged in as a coffee farmer")
+    @Given("logged in as a coffee farmer")
     fun farmerJWT() {
         scenarioContext.jwt =
             Jwt.withTokenValue("token")

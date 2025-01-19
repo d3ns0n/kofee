@@ -5,9 +5,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 interface ItemRepository {
-    fun saveItem(item: Item): Mono<Item>
-
-    fun getItem(id: Long): Mono<Item>
-
     fun getItems(): Flux<Item>
+
+    fun saveItem(item: Item): Mono<Item>
 }

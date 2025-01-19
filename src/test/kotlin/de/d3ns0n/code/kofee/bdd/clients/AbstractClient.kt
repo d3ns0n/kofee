@@ -1,7 +1,7 @@
 package de.d3ns0n.code.kofee.bdd.clients
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import de.d3ns0n.code.kofee.infrastructure.configuration.authoritiesFromJwtRealmRoles
+import de.d3ns0n.code.kofee.infrastructure.configuration.SecurityConfiguration.Companion.authoritiesFromJwtRealmRoles
 import org.springframework.context.ApplicationContext
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.core.GrantedAuthority

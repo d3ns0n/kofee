@@ -11,15 +11,12 @@ class ItemRepositoryAdapter(
     private val reactiveDatabaseItemRepository: ReactiveDatabaseItemRepository,
     private val itemMapper: ItemMapper,
 ) : ItemRepository {
-    override fun saveItem(item: Item): Mono<Item> {
-        return itemMapper.mapToEntity(item).let { reactiveDatabaseItemRepository.save(it) }.map { itemMapper.mapFromEntity(it) }
-    }
+    override fun getItems(): Flux<Item> =
+        reactiveDatabaseItemRepository.findAll()
+            .map { itemMapper.mapFromEntity(it) }
 
-    override fun getItem(id: Long): Mono<Item> {
-        return reactiveDatabaseItemRepository.findById(id).map { itemMapper.mapFromEntity(it) }
-    }
-
-    override fun getItems(): Flux<Item> {
-        return reactiveDatabaseItemRepository.findAll().map { itemMapper.mapFromEntity(it) }
-    }
+    override fun saveItem(item: Item): Mono<Item> =
+        itemMapper.mapToEntity(item)
+            .let { reactiveDatabaseItemRepository.save(it) }
+            .map { itemMapper.mapFromEntity(it) }
 }
