@@ -23,6 +23,7 @@
         <avro-maven-plugin.version>1.12.0</avro-maven-plugin.version>
         <cucumber.version>7.20.1</cucumber.version>
         <kafka-avro-serializer.version>7.8.0</kafka-avro-serializer.version>
+        <kotlin-logging.version>7.0.3</kotlin-logging.version>
         <maven-failsafe-plugin.version>3.5.2</maven-failsafe-plugin.version>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <testcontainers.version>1.20.4</testcontainers.version>
@@ -96,11 +97,15 @@
             <artifactId>kafka-avro-serializer</artifactId>
             <version>${kafka-avro-serializer.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.diffplug.spotless</groupId>
             <artifactId>spotless-maven-plugin</artifactId>
             <version>${spotless-maven-plugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.oshai</groupId>
+            <artifactId>kotlin-logging-jvm</artifactId>
+            <version>${kotlin-logging.version}</version>
         </dependency>
 
         <!-- Test dependencies -->
