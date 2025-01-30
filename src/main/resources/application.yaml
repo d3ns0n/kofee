@@ -16,17 +16,8 @@ spring:
       transaction-id-prefix: 'kofee-${random.uuid}'
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-    consumer:
-      client-id: 'kofee-${random.uuid}'
-      group-id: 'local-kofee'
-      auto-offset-reset: 'earliest'
-      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      properties:
-        specific.avro.reader: true
-        # Delegate deserializers
-        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
-        spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    topics:
+      items: 'local-items-v1'
   liquibase:
     url: 'jdbc:postgresql://localhost:5433/kofee'
     user: 'postgres'

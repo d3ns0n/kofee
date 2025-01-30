@@ -29,16 +29,16 @@ data class CommonSteps(val scenarioContext: ScenarioContext) {
 
     @Then("HTTP status is 200 Ok")
     fun httpStatusIsOk() {
-        scenarioContext.response.status.isOk()
+        scenarioContext.responseStatus().isOk()
     }
 
     @Then("HTTP status is 401 Unauthorized")
     fun httpStatusIsUnauthorized() {
-        scenarioContext.response.status.isUnauthorized()
+        scenarioContext.responseStatus().isUnauthorized()
     }
 
     @Then("HTTP status is 403 Forbidden")
     fun httpStatusIsForbidden() {
-        scenarioContext.response.status.isForbidden()
+        scenarioContext.responseStatus().isForbidden()
     }
 }

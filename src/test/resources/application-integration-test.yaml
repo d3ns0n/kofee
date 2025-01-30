@@ -1,0 +1,13 @@
+spring:
+  kafka:
+    topics:
+      items: 'test-items-v1'
+    consumer:
+      client-id: 'kofee-${random.uuid}'
+      group-id: 'kofee-integration-test'
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        specific.avro.reader: true
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer

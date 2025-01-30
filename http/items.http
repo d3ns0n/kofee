@@ -4,7 +4,8 @@
 GET http://localhost:8082/items
 Authorization: Bearer {{$auth.token("kofee_keycloak(Docker)")}}
 
-### Create new item (use 'k.solomon' as he has the needed role)
+### Create new item
+# use 'k.solomon' as he has the needed role
 POST http://localhost:8082/items
 Authorization: Bearer {{$auth.token("kofee_keycloak(Docker)")}}
 Content-Type: application/json

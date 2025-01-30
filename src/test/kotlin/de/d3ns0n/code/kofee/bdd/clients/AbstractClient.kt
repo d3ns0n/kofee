@@ -1,6 +1,5 @@
 package de.d3ns0n.code.kofee.bdd.clients
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import de.d3ns0n.code.kofee.infrastructure.configuration.SecurityConfiguration.Companion.authoritiesFromJwtRealmRoles
 import org.springframework.context.ApplicationContext
 import org.springframework.core.convert.converter.Converter
@@ -11,7 +10,6 @@ import org.springframework.security.test.web.reactive.server.SecurityMockServerC
 import org.springframework.test.web.reactive.server.StatusAssertions
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.WebTestClient.BodyContentSpec
-import kotlin.reflect.KClass
 
 abstract class AbstractClient(context: ApplicationContext) {
     protected val client: WebTestClient =
@@ -40,11 +38,4 @@ fun WebTestClient.withJwt(jwt: Jwt?): WebTestClient {
             },
         ),
     )
-}
-
-/**
- * Transforms the response body to the type of [kClass] using the ObjectMapper
- */
-fun <T : Any> BodyContentSpec.transformTo(kClass: KClass<T>): T {
-    return jacksonObjectMapper().readValue(this.returnResult().responseBody, kClass.java)
 }
