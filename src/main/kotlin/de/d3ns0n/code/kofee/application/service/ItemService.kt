@@ -3,6 +3,7 @@ package de.d3ns0n.code.kofee.application.service
 import de.d3ns0n.code.kofee.application.port.outgoing.ItemPublisher
 import de.d3ns0n.code.kofee.application.port.outgoing.ItemRepository
 import de.d3ns0n.code.kofee.domain.Item
+import de.d3ns0n.code.kofee.item.v1.EventType
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
@@ -20,6 +21,6 @@ class ItemService(
     @Transactional("connectionFactoryTransactionManager")
     fun create(item: Item): Mono<Item> {
         return itemRepository.saveItem(item)
-            .doOnNext { itemPublisher.publish(it) }
+            .doOnNext { itemPublisher.publish(EventType.CREATE, it) }
     }
 }

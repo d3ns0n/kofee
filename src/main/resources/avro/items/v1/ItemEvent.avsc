@@ -11,6 +11,18 @@
       }
     },
     {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ]
+      }
+    },
+    {
       "name": "name",
       "type": {
         "type": "string",

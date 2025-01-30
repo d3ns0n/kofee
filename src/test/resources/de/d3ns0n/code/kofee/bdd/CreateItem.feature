@@ -8,6 +8,9 @@ Feature: CreateItem
     And create item response has the name "Nicaragua Blend"
     And create item response has the price 17.77
     And create item event was sent
+    And create item event has the name "Nicaragua Blend"
+    And create item event has the price 17.77
+    And create item event has publishedAt
 
   Scenario: Creating an item as a customer will be forbidden
     Given logged in as a customer

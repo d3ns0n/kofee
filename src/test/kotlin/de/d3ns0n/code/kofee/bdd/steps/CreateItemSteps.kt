@@ -4,6 +4,8 @@ import de.d3ns0n.code.kofee.application.port.incoming.items.dto.CreateItemReques
 import de.d3ns0n.code.kofee.application.port.incoming.items.dto.ItemResponse
 import de.d3ns0n.code.kofee.bdd.ScenarioContext
 import de.d3ns0n.code.kofee.bdd.responseBody
+import de.d3ns0n.code.kofee.item.v1.EventType
+import de.d3ns0n.code.kofee.item.v1.ItemEvent
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.assertj.core.api.Assertions.assertThat
@@ -37,8 +39,30 @@ class CreateItemSteps(private val scenarioContext: ScenarioContext) {
 
     @Then("create item event was sent")
     fun createItemEventWasSent() {
+        val itemEvent = getFirstItemEvent()
+        assertThat(itemEvent.eventType).isEqualTo(EventType.CREATE)
+    }
+
+    @Then("create item event has the name {string}")
+    fun createItemEventHasName(name: String) {
+        val itemEvent = getFirstItemEvent()
+        assertThat(itemEvent.name).isEqualTo(name)
+    }
+
+    @Then("create item event has the price {double}")
+    fun createItemEventHasPrice(price: Double) {
+        val itemEvent = getFirstItemEvent()
+        assertThat(itemEvent.price).isEqualTo(price)
+    }
+
+    @Then("create item event has publishedAt")
+    fun createItemEventHasPublishedAt() {
+        val itemEvent = getFirstItemEvent()
+        assertThat(itemEvent.publishedAt).isNotNull
+    }
+
+    private fun getFirstItemEvent(): ItemEvent {
         val id = scenarioContext.responseBody<ItemResponse>().id
-        val itemEvents = scenarioContext.itemEventTestConsumer.getItemEvents(id!!)
-        assertThat(itemEvents).hasSize(1)
+        return scenarioContext.itemEventTestConsumer.getItemEvents(id!!).first()
     }
 }
