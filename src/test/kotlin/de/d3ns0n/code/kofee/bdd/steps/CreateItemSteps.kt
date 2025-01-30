@@ -8,7 +8,9 @@ import de.d3ns0n.code.kofee.item.v1.EventType
 import de.d3ns0n.code.kofee.item.v1.ItemEvent
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.properties.shouldHaveValue
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class CreateItemSteps(private val scenarioContext: ScenarioContext) {
     @When("creating an item with name {string} and price {double}")
@@ -21,44 +23,37 @@ class CreateItemSteps(private val scenarioContext: ScenarioContext) {
 
     @Then("create item response has an id")
     fun responseHasId() {
-        val response = scenarioContext.responseBody<ItemResponse>()
-        assertThat(response.id).isNotNull
+        scenarioContext.responseBody<ItemResponse>()::id shouldNotBe null
     }
 
     @Then("create item response has the name {string}")
     fun responseHasName(name: String) {
-        val response = scenarioContext.responseBody<ItemResponse>()
-        assertThat(response.name).isEqualTo(name)
+        scenarioContext.responseBody<ItemResponse>()::name shouldHaveValue name
     }
 
     @Then("create item response has the price {double}")
     fun responseHasPrice(price: Double) {
-        val response = scenarioContext.responseBody<ItemResponse>()
-        assertThat(response.price).isEqualTo(price)
+        scenarioContext.responseBody<ItemResponse>()::price shouldHaveValue price
     }
 
     @Then("create item event was sent")
     fun createItemEventWasSent() {
-        val itemEvent = getFirstItemEvent()
-        assertThat(itemEvent.eventType).isEqualTo(EventType.CREATE)
+        getFirstItemEvent().eventType shouldBe EventType.CREATE
     }
 
     @Then("create item event has the name {string}")
     fun createItemEventHasName(name: String) {
-        val itemEvent = getFirstItemEvent()
-        assertThat(itemEvent.name).isEqualTo(name)
+        getFirstItemEvent().name shouldBe name
     }
 
     @Then("create item event has the price {double}")
     fun createItemEventHasPrice(price: Double) {
-        val itemEvent = getFirstItemEvent()
-        assertThat(itemEvent.price).isEqualTo(price)
+        getFirstItemEvent().price shouldBe price
     }
 
     @Then("create item event has publishedAt")
     fun createItemEventHasPublishedAt() {
-        val itemEvent = getFirstItemEvent()
-        assertThat(itemEvent.publishedAt).isNotNull
+        getFirstItemEvent().publishedAt shouldNotBe null
     }
 
     private fun getFirstItemEvent(): ItemEvent {

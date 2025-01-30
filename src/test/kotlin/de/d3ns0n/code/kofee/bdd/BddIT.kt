@@ -46,5 +46,5 @@ class BddIT {
     }
 }
 
-val PostgreSQLContainer<*>.r2dbcUrl: String
+private val PostgreSQLContainer<*>.r2dbcUrl: String
     get() = this.jdbcUrl.replace("jdbc", "r2dbc")

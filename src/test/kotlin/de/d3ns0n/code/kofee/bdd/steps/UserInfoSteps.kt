@@ -5,7 +5,8 @@ import de.d3ns0n.code.kofee.bdd.ScenarioContext
 import de.d3ns0n.code.kofee.bdd.responseBody
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.properties.shouldHaveValue
 
 class UserInfoSteps(private val scenarioContext: ScenarioContext) {
     @When("requesting the user info endpoint")
@@ -16,13 +17,11 @@ class UserInfoSteps(private val scenarioContext: ScenarioContext) {
 
     @Then("user info response has username {string}")
     fun userInfoResponseHasUsername(username: String) {
-        val userInfo = scenarioContext.responseBody<UserInfoResponse>()
-        assertThat(userInfo.username).isEqualTo(username)
+        scenarioContext.responseBody<UserInfoResponse>()::username shouldHaveValue username
     }
 
     @Then("user info response contains authority {string}")
     fun userInfoResponseContainsAuthority(authority: String) {
-        val userInfo = scenarioContext.responseBody<UserInfoResponse>()
-        assertThat(userInfo.authorities).contains(authority)
+        scenarioContext.responseBody<UserInfoResponse>().authorities shouldContain authority
     }
 }
